@@ -6,7 +6,7 @@ orion.entities = {}
 /**
  * Creation process for entities
  */
-orion.addEntity = function(name, schema, options) {
+orion.addEntity = function(name, schema, options, tabularOptions) {
 	var newEntity = {};
 	newEntity.name = name;
 
@@ -29,14 +29,14 @@ orion.addEntity = function(name, schema, options) {
 	newEntity.options = orion.getNewEntityOptions(name, options);
 
 	// Sets the tabular table
-	newEntity.table = new Tabular.Table({
+	newEntity.table = new Tabular.Table(_.extend({
 		name: 'entities.' + name,
 		collection: newEntity.collection,
 		columns: newEntity.options.tableColumns,
 		pub: 'entityTabular',
 		sub: orion.subs,
 		extraFields: newEntity.options.extraFields
-	});
+	}, tabularOptions));
 
 	// Saves the new entity to the array
 	this.entities[name] = newEntity;
