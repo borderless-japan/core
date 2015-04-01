@@ -2,13 +2,13 @@
  * Definition of the dictionary object
  */
 orion.dictionary = {
-	collection: new Meteor.Collection('dictionary'),
+	collection: new TAPi18n.Collection('dictionary', Meteor.settings.public.i18n),
 	schema: {
 		_languages: {
 			type: Object,
 			blackbox: true,
 			optional: true
-		}
+		},
 	},
 	categories: {},
 };
@@ -26,7 +26,7 @@ orion.dictionary.collection.allow({
 		return false;
 	},
 	/**
-	 * Check if user has permission for that 
+	 * Check if user has permission for that
 	 * dictionary category.
 	 */
 	'update': function(userId, doc, fields, modifier) {
@@ -65,10 +65,25 @@ orion.dictionary.addDefinition = function(name, category, schema) {
 
 	this.categories[category].push(name);
 	this.schema[name] = _.extend({
-		optional: true
+		optional: true,
 	}, schema);
+	this.collection.attachI18nSchema(new SimpleSchema(this.schema), {
+		i18n: {autolabel: true}
+	});
 
-	this.collection.attachSchema(new SimpleSchema(this.schema));
+	console.log(schema);
+	if (schema.i18n) {
+		(function(self) {
+			cat = self.categories[category];
+			var pat = new RegExp('^i18n\\.[\\w-]*\\.'+name+'$')
+			_.forEach(self.collection.simpleSchema().schema(), function(v, i18nName) {
+				if (i18nName.match(pat)) {
+					cat.push(i18nName)
+				}
+			});
+			console.log(self.categories);
+		})(this);
+	}
 };
 
 /**
@@ -127,7 +142,7 @@ var objectSearchWithDots = function(object, key) {
 
 /**
  * Returns the value of the definition.
- * If the definition doesn't exists it 
+ * If the definition doesn't exists it
  * returns the defaultValue
  */
 orion.dictionary.get = function(name, defaultValue) {

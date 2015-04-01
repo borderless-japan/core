@@ -11,7 +11,7 @@ orion.addEntity = function(name, schema, options, tabularOptions) {
 	newEntity.name = name;
 
 	// Creates the mongo collection in the collection variable
-	newEntity.collection = new Meteor.Collection(name);
+	newEntity.collection = new TAPi18n.Collection(name, Meteor.settings.public.i18n);
 
 	// Adds the permissions for the entity
 	orion.users.permissions.add('entity.' + name + '.all');
@@ -23,7 +23,7 @@ orion.addEntity = function(name, schema, options, tabularOptions) {
 
 	// Attachs the schema
 	newEntity.schema = orion.getNewEntitySchema(schema);
-	newEntity.collection.attachSchema(new SimpleSchema(newEntity.schema));
+	newEntity.collection.attachI18nSchema(new SimpleSchema(newEntity.schema));
 
 	// Get the options, override default
 	newEntity.options = orion.getNewEntityOptions(name, options);
