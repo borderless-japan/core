@@ -71,7 +71,6 @@ orion.dictionary.addDefinition = function(name, category, schema) {
 		i18n: {autolabel: true}
 	});
 
-	console.log(schema);
 	if (schema.i18n) {
 		(function(self) {
 			cat = self.categories[category];
@@ -81,7 +80,6 @@ orion.dictionary.addDefinition = function(name, category, schema) {
 					cat.push(i18nName)
 				}
 			});
-			console.log(self.categories);
 		})(this);
 	}
 };

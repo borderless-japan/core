@@ -11,16 +11,16 @@ if (orion.dictionary.collection.find().count() === 0) {
 }
 
 /**
- * Publications of the dictionary
+ * i18n dictionary (tap:i18n-db doesn't support null publications)
  */
-Meteor.publish(null, function() {
-	return orion.dictionary.collection.find();
+TAPi18n.publish('dictionary', function(options) {
+	ret = orion.dictionary.collection.find();
+	console.log(ret.fetch());
+	return ret;
 });
 
-/**
- * Deprecation notice
- */
-Meteor.publish('dictionary', function(options) {
-	console.log('Do not subscribe to the dictionary, the client is subscribed automatically. This publication will be removed and will cause errors on your app.')
-	return [];
+TAPi18n.publish('dictionary.i18n', function(options) {
+	ret = orion.dictionary.collection.i18nFind();
+	console.log(ret.fetch());
+	return ret;
 });

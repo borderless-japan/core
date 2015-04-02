@@ -3,7 +3,7 @@
  */
 orion.admin.dictionaryUpdateHelpers = {
 	getDoc: function() {
-		return orion.dictionary.collection.findOne();
+		return orion.dictionary.collection.findOne({}, {transform: null});
 	},
 	allCategories: function() {
 		return _.keys(orion.dictionary.categories);
@@ -54,7 +54,7 @@ AutoForm.hooks({
 			if (unset) {
 				operator['$unset'] = unset;
 			}
-			
+
 			orion.dictionary.collection.update(dict._id, operator);
 			this.done();
 			return false;

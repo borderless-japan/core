@@ -4,12 +4,24 @@
  * @param  string name The name of the entity
  * @param  object options Passed to the find() method
  */
-Meteor.publish('entity', function(name, query, options) {
+TAPi18n.publish('entity', function(name, query, options) {
 	check(name, String)
 	check(query, Match.Optional(Object))
 	check(options, Match.Optional(Object))
 	query = query ? query : {};
-	return orion.entities[name].collection.find(query, options);
+	ret = orion.entities[name].collection.find(query, options);
+	console.log(ret.fetch());
+	return ret;
+});
+
+TAPi18n.publish('entity.i18n', function(name, query, options) {
+	check(name, String)
+	check(query, Match.Optional(Object))
+	check(options, Match.Optional(Object))
+	query = query ? query : {};
+	ret = orion.entities[name].collection.i18nFind(query, options);
+	console.log(ret.fetch());
+	return ret;
 });
 
 /**
