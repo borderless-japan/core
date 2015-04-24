@@ -54,7 +54,15 @@ orion.attributeColumn = function(name, key, title) {
 			return '';
 		},
 		createdCell: function(cell, cellData, rowData) {
-        	Blaze.renderWithData(Template[orion.attributes[name].columnTemplate], cellData, cell);
+			var entity = Router.current().data().entity;
+			var schema = entity.schema[key];
+			var data = {
+				key: key,
+				value: cellData,
+				item: rowData,
+				schema: schema,
+			}
+        	Blaze.renderWithData(Template[orion.attributes[name].columnTemplate], data, cell);
         }
 	}
 }
