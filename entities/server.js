@@ -10,7 +10,7 @@ TAPi18n.publish('entity', function(name, query, options) {
 	check(options, Match.Optional(Object))
 	query = query ? query : {};
 	ret = orion.entities[name].collection.find(query, options);
-	console.log(ret.fetch());
+	// console.log(ret.fetch());
 	return ret;
 });
 
@@ -20,7 +20,7 @@ TAPi18n.publish('entity.i18n', function(name, query, options) {
 	check(options, Match.Optional(Object))
 	query = query ? query : {};
 	ret = orion.entities[name].collection.i18nFind(query, options);
-	console.log(ret.fetch());
+	// console.log(ret.fetch());
 	return ret;
 });
 

@@ -15,12 +15,12 @@ if (orion.dictionary.collection.find().count() === 0) {
  */
 TAPi18n.publish('dictionary', function(options) {
 	ret = orion.dictionary.collection.find();
-	console.log(ret.fetch());
+	// console.log(ret.fetch());
 	return ret;
 });
 
 TAPi18n.publish('dictionary.i18n', function(options) {
 	ret = orion.dictionary.collection.i18nFind();
-	console.log(ret.fetch());
+	// console.log(ret.fetch());
 	return ret;
 });
