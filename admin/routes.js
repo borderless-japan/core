@@ -29,12 +29,12 @@ orion.RouteController = RouteController.extend({
 		if (!Meteor.isClient) {
 			return;
 		}
-		SEO.set({
-			title: orion.dictionary.get('siteName') + ' Admin Panel',
-			link: {
-				icon: 'https://s3.amazonaws.com/meteor-cms-default/orionjs/favicon.ico',
-			}
-		});
+		// SEO.set({
+		// 	title: orion.dictionary.get('siteName') + ' Admin Panel',
+		// 	link: {
+		// 		icon: 'https://s3.amazonaws.com/meteor-cms-default/orionjs/favicon.ico',
+		// 	}
+		// });
 	}
 });
 
