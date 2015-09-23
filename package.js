@@ -23,6 +23,7 @@ Package.onUse(function(api) {
 		'zimme:iron-router-active@1.0.0',
 		'aldeed:delete-button@1.0.0',
 		'useraccounts:core@1.8.1',
+		'useraccounts:iron-routing',
 		// 'manuelschoebel:ms-seo@0.4.1',
 		'tap:i18n-db@0.4.0',
 		'ansyg:tap-i18n-schema@0.1.2'
@@ -38,7 +39,7 @@ Package.onUse(function(api) {
 		'matb33:collection-hooks',
 		'iron:router',
 		// 'manuelschoebel:ms-seo',
-		'useraccounts:core'
+		'useraccounts:core@1.8.1',
 		]);
 
 	api.addFiles([

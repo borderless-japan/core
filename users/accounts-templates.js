@@ -10,6 +10,7 @@ var defaultAccountsOptions = {
     homeRoutePath: '/admin'
 }
 
+AccountsTemplates.configure({enablePasswordChange: true});
 /**
  * Configures the change password route
  */
